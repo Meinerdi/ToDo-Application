@@ -27,9 +27,11 @@ export class App extends Component {
   }
 
   componentDidMount() {
-    // this.setState({
+    
+  }
 
-    // })
+  componentDidUpdate() {
+    localStorage.setItem("tasks", JSON.stringify([...this.state.tasks]))
   }
 
   generateUniqueId = () => {
@@ -53,8 +55,6 @@ export class App extends Component {
       done: false,
       date: taskDate
     }
-    
-    // localStorage.setItem("tasks", JSON.stringify([...this.state.tasks, templateOfTask]))
 
     this.setState(state => ({
       tasks: [...state.tasks, templateOfTask],
@@ -66,8 +66,6 @@ export class App extends Component {
   }
 
   onDeleteTask = (id) => {
-    // TODO:перенести или нет в блоки if else
-    // localStorage.setItem("tasks", JSON.stringify([...this.state.tasks].filter(i => i.id !== id)))
     if (this.state.searchActivated) {
       this.setState(state => ({
         searchedTasks: state.searchedTasks.filter(i => i.id !== id),
@@ -81,15 +79,17 @@ export class App extends Component {
   }
 
   onCompleteTask = (id) => {
-    this.setState(state => ({
-      tasks: state.tasks.map(i => {
-        if (i.id === id) {
-          i.done = !i.done
+    this.setState(state => {
+      return {
+        tasks: state.tasks.map(i => {
+          if (i.id === id) {
+            i.done = !i.done
+            return i
+          }
           return i
-        }
-        return i
-      })
-    }))
+        })
+      }
+    })
   }
 
   onSortByName = (sorted) => {
