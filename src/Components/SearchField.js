@@ -1,16 +1,19 @@
 import React, {Component} from 'react'
 
 export class SearchField extends Component {
+
     handleSubmit = e => {
         e.preventDefault()
     }
 
     handleSearchText = e => {
         this.props.onSearchByText(e.target.value)
+        localStorage.setItem("valueOfSearchText", e.target.value)
     }
 
     handleSearchDate = e => {
         this.props.onSearchByDate(e.target.value)
+        localStorage.setItem("valueOfSearchDate", e.target.value)
     }
 
     render() {

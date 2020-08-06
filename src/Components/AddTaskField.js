@@ -11,16 +11,25 @@ export class AddTaskField extends Component {
         }
     }
 
+    componentDidMount() {
+        this.setState({...this.state,
+            valueOfTaskNameField: localStorage.getItem("valueOfAddTaskName"),
+            valueOfDateField: localStorage.getItem("valueOfAddTaskDate")
+        })
+    }
+
     handleTaskNameChange = e => {
         this.setState({
             valueOfTaskNameField: e.target.value
         })
+        localStorage.setItem("valueOfAddTaskName", e.target.value)
     }
 
     handleDateChange = e => {
         this.setState({
             valueOfDateField: e.target.value
         })
+        localStorage.setItem("valueOfAddTaskDate", e.target.value )
     }
 
     handleSubmitTask = e => {

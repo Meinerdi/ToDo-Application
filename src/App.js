@@ -28,7 +28,6 @@ export class App extends Component {
 
   componentDidMount() {
     let oldState = JSON.parse(localStorage.getItem("state"))
-    delete oldState.emptyFields
     this.setState({...this.state, ...oldState})
   }
 
