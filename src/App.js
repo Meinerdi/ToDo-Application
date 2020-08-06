@@ -27,11 +27,13 @@ export class App extends Component {
   }
 
   componentDidMount() {
-    
+    let oldState = JSON.parse(localStorage.getItem("state"))
+    delete oldState.emptyFields
+    this.setState({...this.state, ...oldState})
   }
 
   componentDidUpdate() {
-    localStorage.setItem("tasks", JSON.stringify([...this.state.tasks]))
+    localStorage.setItem("state", JSON.stringify({...this.state}))
   }
 
   generateUniqueId = () => {
