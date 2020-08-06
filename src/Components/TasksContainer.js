@@ -26,7 +26,7 @@ export class TasksContainer extends Component {
                                 value={i.id}
                                 className={s.checkbox}
                             />
-                            <span>{i.name}</span>
+                            <span className={s.taskName}>{i.name}</span>
                             
                         </div>
                         <span className={s.date}>{i.date}</span>
