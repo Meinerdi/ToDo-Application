@@ -82,43 +82,83 @@ export class App extends Component {
   }
 
   onSortByName = (sorted) => {
-    this.setState(state => {
-      return {
-        tasks: state.tasks.map(i => i).sort( (a, b) => {
-          if (sorted) {
-            if(a.name.toLowerCase() > b.name.toLowerCase()) {
-              return 1
+    if (this.state.searchActivated) {
+      this.setState(state => {
+        return {
+          searchedTasks: state.searchedTasks.map(i => i).sort( (a, b) => {
+            if (sorted) {
+              if(a.name.toLowerCase() > b.name.toLowerCase()) {
+                return 1
+              } else {
+                return -1
+              }
             } else {
-              return -1
+              if(a.name.toLowerCase() < b.name.toLowerCase()) {
+                return 1
+              } else return -1
             }
-          } else {
-            if(a.name.toLowerCase() < b.name.toLowerCase()) {
-              return 1
-            } else return -1
-          }
-        })
-      }
-    })
+          })
+        }
+      })
+    } else {
+      this.setState(state => {
+        return {
+          tasks: state.tasks.map(i => i).sort( (a, b) => {
+            if (sorted) {
+              if(a.name.toLowerCase() > b.name.toLowerCase()) {
+                return 1
+              } else {
+                return -1
+              }
+            } else {
+              if(a.name.toLowerCase() < b.name.toLowerCase()) {
+                return 1
+              } else return -1
+            }
+          })
+        }
+      })
+    }
   }
 
   onSortByDate = (sorted) => {
-    this.setState(state => {
-      return {
-        tasks: state.tasks.map(i => i).sort( (a, b) => {
-          if (sorted) {
-            if(a.date > b.date) {
-              return 1
+    if(this.state.searchActivated) {
+      this.setState(state => {
+        return {
+          searchedTasks: state.searchedTasks.map(i => i).sort( (a, b) => {
+            if (sorted) {
+              if(a.date > b.date) {
+                return 1
+              } else {
+                return -1
+              }
             } else {
-              return -1
+              if(a.date < b.date) {
+                return 1
+              } else return -1
             }
-          } else {
-            if(a.date < b.date) {
-              return 1
-            } else return -1
-          }
-        })
-      }
-    })
+          })
+        }
+      })
+    } else {
+      this.setState(state => {
+        return {
+          tasks: state.tasks.map(i => i).sort( (a, b) => {
+            if (sorted) {
+              if(a.date > b.date) {
+                return 1
+              } else {
+                return -1
+              }
+            } else {
+              if(a.date < b.date) {
+                return 1
+              } else return -1
+            }
+          })
+        }
+      })
+    }
   }
   
   onSearchByText = (searchText) => {
