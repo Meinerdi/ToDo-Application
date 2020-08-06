@@ -17,7 +17,7 @@ export class TasksContainer extends Component {
         return (
             <ol className={s.tasksContainer}>
                 {data.map(i => (
-                    <li key={i.id} className={s.taskHolder}>
+                    <li key={i.id} className={`${s.taskHolder} ${i.done ? s.completed : ""}`}>
                         <div className={s.taskNameHolder}>
                             <input 
                                 type="checkbox" 
