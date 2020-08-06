@@ -4,7 +4,7 @@ import {Header} from './Components/Header';
 import {TasksContainer} from './Components/TasksContainer'
 import {SortField} from './Components/SortField'
 import { SearchField } from './Components/SearchField';
-import styles from './styles.module.scss'
+import './styles.module.scss'
 
 export class App extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ export class App extends Component {
     }
   }
 
-  idCreator = () => {
+  generateUniqueId = () => {
     return '_' + Math.random().toString(36).substr(2, 9)
   } 
 
@@ -42,7 +42,7 @@ export class App extends Component {
     }
 
     let templateOfTask = {
-      id: this.idCreator(),
+      id: this.generateUniqueId(),
       name: taskName,
       done: false,
       date: taskDate
@@ -58,15 +58,21 @@ export class App extends Component {
   }
 
   onDeleteTask = (id) => {
-    this.setState(state => ({
-        tasks: state.tasks.filter(i => i.id != id)
+    if (this.state.searchActivated) {
+      this.setState(state => ({
+        searchedTasks: state.searchedTasks.filter(i => i.id !== id)
+      }))
+    } else {
+      this.setState(state => ({
+        tasks: state.tasks.filter(i => i.id !== id)
     }))
+    }
   }
 
   onCompleteTask = (id) => {
     this.setState(state => ({
       tasks: state.tasks.map(i => {
-        if (i.id == id) {
+        if (i.id === id) {
           i.done = !i.done
           return i
         }
@@ -116,7 +122,39 @@ export class App extends Component {
   }
   
   onSearchByText = (searchText) => {
-    
+    if (searchText) {
+      this.setState({
+        searchActivated: true
+      }) 
+    } else {
+      this.setState({
+        searchActivated: false
+      }) 
+    }
+
+    let tmpTasks = [...this.state.tasks]
+
+    this.setState({
+      searchedTasks: tmpTasks.filter(i => i.name.includes(searchText))
+    })
+  }
+
+  onSearchByDate = (searchDate) => {
+    if (searchDate) {
+      this.setState({
+        searchActivated: true
+      }) 
+    } else {
+      this.setState({
+        searchActivated: false
+      }) 
+    }
+
+    let tmpTasks = [...this.state.tasks]
+
+    this.setState({
+      searchedTasks: tmpTasks.filter(i => i.date.includes(searchDate))
+    })
   }
 
   render() {
