@@ -26,6 +26,12 @@ export class App extends Component {
     }
   }
 
+  componentDidMount() {
+    // this.setState({
+
+    // })
+  }
+
   generateUniqueId = () => {
     return '_' + Math.random().toString(36).substr(2, 9)
   } 
@@ -48,6 +54,8 @@ export class App extends Component {
       date: taskDate
     }
     
+    localStorage.setItem("tasks", JSON.stringify([...this.state.tasks, templateOfTask]))
+
     this.setState(state => ({
       tasks: [...state.tasks, templateOfTask],
       emptyFields: {
@@ -58,6 +66,8 @@ export class App extends Component {
   }
 
   onDeleteTask = (id) => {
+    // TODO:перенести или нет в блоки if else
+    localStorage.setItem("tasks", JSON.stringify([...this.state.tasks].filter(i => i.id !== id)))
     if (this.state.searchActivated) {
       this.setState(state => ({
         searchedTasks: state.searchedTasks.filter(i => i.id !== id)
@@ -65,7 +75,7 @@ export class App extends Component {
     } else {
       this.setState(state => ({
         tasks: state.tasks.filter(i => i.id !== id)
-    }))
+      }))
     }
   }
 
