@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import s from './../styles.module.scss'
 
 export class TasksContainer extends Component {
     handleDelete = e => {
@@ -14,16 +15,21 @@ export class TasksContainer extends Component {
         let data = searchActivated ? searchedTasks : tasks
         
         return (
-            <ol>
+            <ol className={s.tasksContainer}>
                 {data.map(i => (
-                    <li key={i.id}>
-                        <input 
-                            type="checkbox" 
-                            checked={i.done} 
-                            onChange={this.handleComplete} 
-                            value={i.id}
-                        />
-                        {i.name} {i.date}
+                    <li key={i.id} className={s.taskHolder}>
+                        <div className={s.taskNameHolder}>
+                            <input 
+                                type="checkbox" 
+                                checked={i.done} 
+                                onChange={this.handleComplete} 
+                                value={i.id}
+                                className={s.checkbox}
+                            />
+                            <span>{i.name}</span>
+                            
+                        </div>
+                        <span className={s.date}>{i.date}</span>
                         <button value={i.id} onClick={this.handleDelete}>Delete</button>
                     </li>
                 ))}

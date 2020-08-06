@@ -4,7 +4,7 @@ import {Header} from './Components/Header';
 import {TasksContainer} from './Components/TasksContainer'
 import {SortField} from './Components/SortField'
 import { SearchField } from './Components/SearchField';
-import './styles.module.scss'
+import s from './styles.module.scss'
 
 export class App extends Component {
   constructor(props) {
@@ -213,7 +213,7 @@ export class App extends Component {
     let {tasks, emptyFields, searchedTasks, searchActivated} = this.state
 
     return (
-      <div>
+      <div className={s.appWrapper}>
         <Header tasksCount={tasks.length}/>
         <AddTaskField 
           onAddTask={this.onAddTask} 

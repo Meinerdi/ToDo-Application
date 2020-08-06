@@ -1,4 +1,114 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+ol {
+    list-style: none;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+input {
+    width: 100%;
+    padding: 2px 5px;
+    border: 1px solid #38423c81
+}
+
+button,
+input[type=submit] {
+    cursor: pointer;
+}
+
 .error {
-    outline: 1px solid red;
-    border: 1px solid transparent
+    border: 1px solid #f50808cc;
+    background: #d6220a49
+}
+
+.appWrapper {
+    box-shadow: 1px 2px 5px;
+    padding: 15px;
+    height: 55vh;
+    overflow-y: scroll;
+    width: 500px;
+}
+
+.appWrapper::-webkit-scrollbar { 
+    width: 0; 
+}
+
+.titleName {
+    font-size: 20px;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+    background: #318350;
+    text-align: center;
+    padding: 3px 0;
+}
+
+.addTaskForm {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 10px;
+}
+
+.searchForm {
+    display: flex;
+    margin: 0 0 10px;
+}
+
+.sortField {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 16px;
+    margin: 0 0 10px;
+}
+
+.sortField > * {
+    margin: 0 4px 0 0;
+}
+
+.sortField *:last-child {
+    margin-right: 0;
+}
+
+.sortButtons {
+    color: #c01205;
+    cursor: pointer;
+    user-select: none; 
+}
+
+.taskHolder {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #38423c81;
+    padding: 3px;
+    margin: 0 0 5px;
+}
+
+.taskNameHolder {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.checkbox {
+    width: 15px;
+    margin: 0 5px 0 0 ;
+}
+
+.date {
+    width: 150px;
+}
+
+.tasksContainer {
+    display: flex;
+    flex-direction: column-reverse;
 }

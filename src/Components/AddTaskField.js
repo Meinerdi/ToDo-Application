@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import style from '../styles.module.scss'
+import s from '../styles.module.scss'
 
 export class AddTaskField extends Component {
     constructor(props) {
@@ -45,19 +45,19 @@ export class AddTaskField extends Component {
         let {emptyFields} = this.props
 
         return (
-            <form>
+            <form className={s.addTaskForm}>
                 <input 
                     type="text" 
                     value={valueOfTaskNameField} 
                     onChange={this.handleTaskNameChange}
-                    className={emptyFields.taskName ? style.error : ""}
+                    className={emptyFields.taskName ? s.error : ""}
                     placeholder="Write task name..."
                 />
                 <input 
                     type="date" 
                     value={valueOfDateField} 
                     onChange={this.handleDateChange}
-                    className={emptyFields.taskDate ? style.error : ""}
+                    className={emptyFields.taskDate ? s.error : ""}
                 />
                 <input type="submit" value={"Add task"} onClick={this.handleSubmitTask}/>
             </form>

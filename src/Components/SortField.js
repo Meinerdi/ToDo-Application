@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import s from './../styles.module.scss'
 
 export class SortField extends Component {
     constructor(props) {
@@ -26,10 +27,10 @@ export class SortField extends Component {
 
     render() {
         return (
-            <div>
+            <div className={s.sortField}>
                 <span>Sort by:</span>
-                <span onClick={this.handleSortByName}>Name</span>
-                <span onClick={this.onSortByDate}>Date</span>
+                <span onClick={this.handleSortByName} className={s.sortButtons}>Name</span>
+                <span onClick={this.onSortByDate} className={s.sortButtons}>Date</span>
             </div>
         )
     }

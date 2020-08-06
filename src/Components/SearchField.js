@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import s from '../styles.module.scss'
 
 export class SearchField extends Component {
     constructor(props) {
@@ -41,7 +42,7 @@ export class SearchField extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className={s.searchForm}>
 
                 <input 
                     type="search" 
