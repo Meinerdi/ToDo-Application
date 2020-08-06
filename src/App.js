@@ -54,7 +54,7 @@ export class App extends Component {
       date: taskDate
     }
     
-    localStorage.setItem("tasks", JSON.stringify([...this.state.tasks, templateOfTask]))
+    // localStorage.setItem("tasks", JSON.stringify([...this.state.tasks, templateOfTask]))
 
     this.setState(state => ({
       tasks: [...state.tasks, templateOfTask],
@@ -67,10 +67,11 @@ export class App extends Component {
 
   onDeleteTask = (id) => {
     // TODO:перенести или нет в блоки if else
-    localStorage.setItem("tasks", JSON.stringify([...this.state.tasks].filter(i => i.id !== id)))
+    // localStorage.setItem("tasks", JSON.stringify([...this.state.tasks].filter(i => i.id !== id)))
     if (this.state.searchActivated) {
       this.setState(state => ({
-        searchedTasks: state.searchedTasks.filter(i => i.id !== id)
+        searchedTasks: state.searchedTasks.filter(i => i.id !== id),
+        tasks: state.tasks.filter(i => i.id !== id)
       }))
     } else {
       this.setState(state => ({
