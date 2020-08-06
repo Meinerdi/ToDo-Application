@@ -11,12 +11,7 @@ export class App extends Component {
     super(props)
 
     this.state = {
-      tasks: [
-        {id: "asfasfasf", name: "Do something", done: false, date: "2020-13-01"},
-        {id: "asf23f", name: "Read something", done: true, date: "2050-30-01"},
-        {id: "f3f34fs", name: "Go for a walk", done: false, date: "1986-31-11"},
-        {id: "f3f3sd4fs", name: "AAAAAA", done: false, date: "2007-01-11"},
-      ],
+      tasks: [],
       emptyFields: {
         taskName: false,
         taskDate: false

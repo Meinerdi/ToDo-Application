@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import s from './../styles.module.scss'
+import empty from './../assets/empty.png'
 
 export class TasksContainer extends Component {
     handleDelete = e => {
@@ -13,7 +14,7 @@ export class TasksContainer extends Component {
     render() {
         let {tasks, searchActivated, searchedTasks} = this.props
         let data = searchActivated ? searchedTasks : tasks
-        
+        console.log(data)
         return (
             <ol className={s.tasksContainer}>
                 {data.map(i => (
@@ -33,6 +34,8 @@ export class TasksContainer extends Component {
                         <button value={i.id} onClick={this.handleDelete}>Delete</button>
                     </li>
                 ))}
+
+                {!data.length && <img src={empty} alt="No Tasks" className={s.emptyImage}/> }
             </ol>
         )
     }
