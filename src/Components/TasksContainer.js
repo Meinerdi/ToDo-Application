@@ -19,19 +19,20 @@ export class TasksContainer extends Component {
             <ol className={s.tasksContainer}>
                 {data.map(i => (
                     <li key={i.id} className={`${s.taskHolder} ${i.done ? s.completed : ""}`}>
-                        <div className={s.taskNameHolder}>
-                            <input 
-                                type="checkbox" 
-                                checked={i.done} 
-                                onChange={this.handleComplete} 
-                                value={i.id}
-                                className={s.checkbox}
-                            />
-                            <span className={s.taskName}>{i.name}</span>
-                            
+                        <input 
+                            type="checkbox" 
+                            checked={i.done} 
+                            onChange={this.handleComplete} 
+                            value={i.id}
+                            className={s.checkbox}
+                        />
+                        <span className={s.taskName}>
+                            {i.name}
+                        </span>
+                        <div className={s.rightHolder}>
+                            <span className={s.date}>{i.date}</span>
+                            <button value={i.id} onClick={this.handleDelete} className={s.delete_button}>Delete</button>
                         </div>
-                        <span className={s.date}>{i.date}</span>
-                        <button value={i.id} onClick={this.handleDelete}>Delete</button>
                     </li>
                 ))}
 
