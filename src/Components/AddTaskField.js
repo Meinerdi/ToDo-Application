@@ -38,6 +38,16 @@ export class AddTaskField extends Component {
             this.state.valueOfTaskNameField,
             this.state.valueOfDateField
         )
+
+        if(this.state.valueOfTaskNameField && this.state.valueOfDateField) {
+            this.setState({
+                valueOfTaskNameField: "",
+                valueOfDateField: ""
+            })
+
+            localStorage.setItem("valueOfAddTaskName", "")
+            localStorage.setItem("valueOfAddTaskDate", "" )
+        }
     }
 
     render() {
