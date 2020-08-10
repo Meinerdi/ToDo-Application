@@ -57,11 +57,11 @@ export class AddTaskField extends Component {
         return (
             <form className={s.addTaskForm}>
                 <input 
-                    type="text" 
+                    type="search" 
                     value={valueOfTaskNameField} 
                     onChange={this.handleTaskNameChange}
                     className={emptyFields.taskName ? s.error : ""}
-                    placeholder="Write task name..."
+                    placeholder="&#9989; Write task name..."
                 />
                 <input 
                     type="date" 
@@ -69,7 +69,7 @@ export class AddTaskField extends Component {
                     onChange={this.handleDateChange}
                     className={emptyFields.taskDate ? s.error : ""}
                 />
-                <input type="submit" value={"Add task"} onClick={this.handleSubmitTask}/>
+                <input type="submit" value={"ADD TASK"} onClick={this.handleSubmitTask}/>
             </form>
         )
     }  

@@ -204,6 +204,12 @@ export class App extends Component {
     })
   }
 
+  changeFilterInactive = () => {
+    this.setState({
+      searchActivated: false
+    }) 
+  }
+
   render() {
     let {tasks, emptyFields, searchedTasks, searchActivated} = this.state
 
@@ -217,6 +223,7 @@ export class App extends Component {
         <SearchField
           onSearchByText={this.onSearchByText}
           onSearchByDate={this.onSearchByDate}
+          changeFilterInactive={this.changeFilterInactive}
         />
         <SortField 
           onSortByName={this.onSortByName} 

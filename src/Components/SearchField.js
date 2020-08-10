@@ -40,6 +40,16 @@ export class SearchField extends Component {
         localStorage.setItem("valueOfSearchDate", e.target.value)
     }
 
+    handleReset = () => {
+        this.setState({
+            valueOfSearchTextField: "",
+            valueOfSearchDateField: ""
+        })
+        localStorage.setItem("valueOfSearchText", "")
+        localStorage.setItem("valueOfSearchDate", "")
+        this.props.changeFilterInactive()
+    }
+
     render() {
         return (
             <form onSubmit={this.handleSubmit} className={s.searchForm}>
@@ -47,7 +57,7 @@ export class SearchField extends Component {
                 <input 
                     type="search" 
                     onChange={this.handleSearchText}
-                    placeholder="Search here..."
+                    placeholder="&#128270; Search here..."
                     value={this.state.valueOfSearchTextField}
                 />
                 
@@ -55,6 +65,12 @@ export class SearchField extends Component {
                     type="date" 
                     onChange={this.handleSearchDate}
                     value={this.state.valueOfSearchDateField}
+                />
+
+                <input 
+                    type="submit" 
+                    value="RESET FILTERS"
+                    onClick={this.handleReset}
                 />
 
             </form>
