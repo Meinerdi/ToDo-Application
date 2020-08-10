@@ -53,6 +53,7 @@ input[type=submit] {
     background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
     text-align: center;
     padding: 10px 0;
+    color: #fff;
 }
 
 .addTaskForm {
@@ -127,7 +128,7 @@ input[type=submit] {
 }
 
 .completed {
-    background: #75d49bbb;
+    background: #3dbb70bb;
 }
 
 .emptyImage {
@@ -148,10 +149,15 @@ input[type=submit] {
     transition: all 0.4s ease 0s;
 }
 
-.delete_button:hover,
 input[type=submit]:hover {
     color: #ffffff;
     background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
     border-color: #f6b93b;
+    transition: all 0.4s ease 0s;
+}
+
+.delete_button:hover {
+    color: #ffffff;
+    background: #e45561;;
     transition: all 0.4s ease 0s;
 }
