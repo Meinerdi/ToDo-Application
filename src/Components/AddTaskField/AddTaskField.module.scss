@@ -1,0 +1,10 @@
+.add-task-form {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 10px;
+}
+
+.error {
+  border: 1px solid #f50808cc;
+  background: #d6220a49;
+}

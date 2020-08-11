@@ -1,0 +1,25 @@
+.sort-field {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 16px;
+  margin: 0 0 10px;
+}
+
+.sort-field > * {
+  margin: 0 4px 0 0;
+}
+
+.sort-field *:last-child {
+  margin-right: 0;
+}
+
+.sort-buttons {
+  color: #c01205;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sort-buttons:hover {
+  background: #fda085;
+  color: #000;
+}

@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+ol {
+  list-style: none;
+}
+
+.app-wrapper {
+  box-shadow: 1px 2px 5px;
+  padding: 15px;
+  height: 75vh;
+  overflow-y: auto;
+  width: 750px;
+}
+
+input[type='search'],
+input[type='date'],
+input[type='submit'] {
+  width: 100%;
+  padding: 8px 13px;
+  border: 1px solid #38423c81;
+}
+
+button,
+input[type='submit'] {
+  cursor: pointer;
+}
+
+input[type='submit'] {
+  color: #494949;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 5px 10px;
+  border: 1px solid #8b8b8b;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+}
+
+input[type='submit']:hover {
+  color: #ffffff;
+  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+  border-color: #f6b93b;
+  transition: all 0.4s ease 0s;
+}
