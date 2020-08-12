@@ -3,17 +3,11 @@ import s from './SortField.module.scss';
 
 export const SortField = ({ onSortByName, onSortByDate }) => {
   const handleSortByName = () => {
-    this.setState((state) => ({
-      sortedByName: !state.sortedByName,
-    }));
-    onSortByName(this.state.sortedByName);
+    onSortByName();
   };
 
   const handleSortByDate = () => {
-    this.setState((state) => ({
-      sortedByDate: !state.sortedByDate,
-    }));
-    onSortByDate(this.state.sortedByDate);
+    onSortByDate();
   };
 
   return (

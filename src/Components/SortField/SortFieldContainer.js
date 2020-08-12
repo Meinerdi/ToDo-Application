@@ -1,96 +1,107 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { SortField } from './SortField';
-import { toggleSortByCreator } from '../../redux/appReducer';
+import {
+  toggleSortByNameCreator,
+  toggleSortByDateCreator,
+  setSearchedTasksCreator,
+  sortMainTasksCreator,
+} from '../../redux/appReducer';
 
 const SortFieldContainer = (props) => {
-  const { toggleSortByCreator, sortedByName, sortedByDate } = props;
+  const {
+    toggleSortByNameCreator,
+    toggleSortByDateCreator,
+    sortedByName,
+    sortedByDate,
+    searchActivated,
+    setSearchedTasksCreator,
+    searchedTasks,
+    tasks,
+    sortMainTasksCreator,
+  } = props;
 
-  const onSortByName = (sorted) => {
-    if (this.state.searchActivated) {
-      this.setState((state) => {
-        return {
-          searchedTasks: state.searchedTasks
-            .map((i) => i)
-            .sort((a, b) => {
-              if (sorted) {
-                if (a.name.toLowerCase() > b.name.toLowerCase()) {
-                  return 1;
-                } else {
-                  return -1;
-                }
+  const onSortByName = () => {
+    toggleSortByNameCreator(!sortedByName);
+
+    if (searchActivated) {
+      setSearchedTasksCreator(
+        ...searchedTasks
+          .map((i) => i)
+          .sort((a, b) => {
+            if (sortedByName) {
+              if (a.name.toLowerCase() > b.name.toLowerCase()) {
+                return 1;
               } else {
-                if (a.name.toLowerCase() < b.name.toLowerCase()) {
-                  return 1;
-                } else return -1;
+                return -1;
               }
-            }),
-        };
-      });
+            } else {
+              if (a.name.toLowerCase() < b.name.toLowerCase()) {
+                return 1;
+              } else return -1;
+            }
+          })
+      );
     } else {
-      this.setState((state) => {
-        return {
-          tasks: state.tasks
-            .map((i) => i)
-            .sort((a, b) => {
-              if (sorted) {
-                if (a.name.toLowerCase() > b.name.toLowerCase()) {
-                  return 1;
-                } else {
-                  return -1;
-                }
+      sortMainTasksCreator(
+        ...tasks
+          .map((i) => i)
+          .sort((a, b) => {
+            if (sortedByName) {
+              if (a.name.toLowerCase() > b.name.toLowerCase()) {
+                return 1;
               } else {
-                if (a.name.toLowerCase() < b.name.toLowerCase()) {
-                  return 1;
-                } else return -1;
+                return -1;
               }
-            }),
-        };
-      });
+            } else {
+              if (a.name.toLowerCase() < b.name.toLowerCase()) {
+                return 1;
+              } else return -1;
+            }
+          })
+      );
     }
   };
 
-  const onSortByDate = (sorted) => {
-    if (this.state.searchActivated) {
-      this.setState((state) => {
-        return {
-          searchedTasks: state.searchedTasks
-            .map((i) => i)
-            .sort((a, b) => {
-              if (sorted) {
-                if (a.date > b.date) {
-                  return 1;
-                } else {
-                  return -1;
-                }
+  const onSortByDate = () => {
+    toggleSortByDateCreator(!sortedByDate);
+
+    if (searchActivated) {
+      setSearchedTasksCreator(
+        ...searchedTasks
+          .map((i) => i)
+          .sort((a, b) => {
+            if (sortedByDate) {
+              if (a.name.toLowerCase() > b.name.toLowerCase()) {
+                return 1;
               } else {
-                if (a.date < b.date) {
-                  return 1;
-                } else return -1;
+                return -1;
               }
-            }),
-        };
-      });
+            } else {
+              if (a.name.toLowerCase() < b.name.toLowerCase()) {
+                return 1;
+              } else return -1;
+            }
+          })
+      );
     } else {
-      this.setState((state) => {
-        return {
-          tasks: state.tasks
-            .map((i) => i)
-            .sort((a, b) => {
-              if (sorted) {
-                if (a.date > b.date) {
-                  return 1;
-                } else {
-                  return -1;
-                }
+      sortMainTasksCreator(
+        ...tasks
+          .map((i) => i)
+          .sort((a, b) => {
+            if (sortedByDate) {
+              if (a.name.toLowerCase() > b.name.toLowerCase()) {
+                return 1;
               } else {
-                if (a.date < b.date) {
-                  return 1;
-                } else return -1;
+                return -1;
               }
-            }),
-        };
-      });
+            } else {
+              if (a.name.toLowerCase() < b.name.toLowerCase()) {
+                return 1;
+              } else return -1;
+            }
+          })
+      );
     }
   };
 
@@ -106,8 +117,14 @@ const SortFieldContainer = (props) => {
 const mapDispatchToProps = (state) => ({
   sortedByName: state.appReducer.sortedByName,
   sortedByDate: state.appReducer.sortedByDate,
+  searchActivated: state.appReducer.searchActivated,
+  searchedTasks: state.appReducer.searchedTasks,
+  tasks: state.appReducer.tasks,
 });
 
-export default connect(mapDispatchToProps, { toggleSortByCreator })(
-  SortFieldContainer
-);
+export default connect(mapDispatchToProps, {
+  toggleSortByNameCreator,
+  toggleSortByDateCreator,
+  setSearchedTasksCreator,
+  sortMainTasksCreator,
+})(SortFieldContainer);

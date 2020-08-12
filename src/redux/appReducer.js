@@ -14,7 +14,9 @@ const ADD_TASK = 'ADD_TASK';
 const TOGGLE_EMPTY_FIELDS = 'TOGGLE_EMPTY_FIELDS';
 const TOGGLE_SEARCH_ACTIVATED = 'TOGGLE_SEARCH_ACTIVATED';
 const SET_SEARCHED_TASKS = 'SET_SEARCHED_TASKS';
-const TOGGLE_SORT_BY = 'TOGGLE_SORT_BY';
+const TOGGLE_SORT_BY_NAME = 'TOGGLE_SORT_BY_NAME';
+const TOGGLE_SORT_BY_DATE = 'TOGGLE_SORT_BY_DATE';
+const SORT_MAIN_TASKS = 'SORT_MAIN_TASKS';
 
 export const appReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -46,9 +48,24 @@ export const appReducer = (state = initialState, action) => {
       };
     }
 
-    case TOGGLE_SORT_BY: {
+    case TOGGLE_SORT_BY_NAME: {
       return {
         ...state,
+        sortedByName: action.payload,
+      };
+    }
+
+    case TOGGLE_SORT_BY_DATE: {
+      return {
+        ...state,
+        sortedByDate: action.payload,
+      };
+    }
+
+    case SORT_MAIN_TASKS: {
+      return {
+        ...state,
+        tasks: action.payload,
       };
     }
 
@@ -73,7 +90,17 @@ export const setSearchedTasksCreator = (payload) => ({
   payload,
 });
 
-export const toggleSortByCreator = (payload) => ({
-  type: TOGGLE_SORT_BY,
+export const toggleSortByNameCreator = (payload) => ({
+  type: TOGGLE_SORT_BY_NAME,
+  payload,
+});
+
+export const toggleSortByDateCreator = (payload) => ({
+  type: TOGGLE_SORT_BY_DATE,
+  payload,
+});
+
+export const sortMainTasksCreator = (payload) => ({
+  type: SORT_MAIN_TASKS,
   payload,
 });
