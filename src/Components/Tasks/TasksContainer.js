@@ -14,6 +14,7 @@ const TasksContainer = (props) => {
     deleteMainTaskCreator,
     tasks,
     completeTaskCreator,
+    setSearchedTasksCreator,
   } = props;
 
   const onDeleteTask = (id) => {
