@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import AddTaskFieldContainer from './Components/AddTaskField/AddTaskFieldContainer';
 import HeaderContainer from './Components/Header/HeaderContainer';
-import { SearchField } from './Components/SearchField/SearchField';
-import { SortField } from './Components/SortField/SortField';
+import SearchFieldContainer from './Components/SearchField/SearchFieldContainer';
+import SortFieldContainer from './Components/SortField/SortFieldContainer';
 import { TasksContainer } from './Components/TasksContainer/TasksContainer';
 import s from './global.module.scss';
 
@@ -57,136 +57,6 @@ export class App extends Component {
     });
   };
 
-  onSortByName = (sorted) => {
-    if (this.state.searchActivated) {
-      this.setState((state) => {
-        return {
-          searchedTasks: state.searchedTasks
-            .map((i) => i)
-            .sort((a, b) => {
-              if (sorted) {
-                if (a.name.toLowerCase() > b.name.toLowerCase()) {
-                  return 1;
-                } else {
-                  return -1;
-                }
-              } else {
-                if (a.name.toLowerCase() < b.name.toLowerCase()) {
-                  return 1;
-                } else return -1;
-              }
-            }),
-        };
-      });
-    } else {
-      this.setState((state) => {
-        return {
-          tasks: state.tasks
-            .map((i) => i)
-            .sort((a, b) => {
-              if (sorted) {
-                if (a.name.toLowerCase() > b.name.toLowerCase()) {
-                  return 1;
-                } else {
-                  return -1;
-                }
-              } else {
-                if (a.name.toLowerCase() < b.name.toLowerCase()) {
-                  return 1;
-                } else return -1;
-              }
-            }),
-        };
-      });
-    }
-  };
-
-  onSortByDate = (sorted) => {
-    if (this.state.searchActivated) {
-      this.setState((state) => {
-        return {
-          searchedTasks: state.searchedTasks
-            .map((i) => i)
-            .sort((a, b) => {
-              if (sorted) {
-                if (a.date > b.date) {
-                  return 1;
-                } else {
-                  return -1;
-                }
-              } else {
-                if (a.date < b.date) {
-                  return 1;
-                } else return -1;
-              }
-            }),
-        };
-      });
-    } else {
-      this.setState((state) => {
-        return {
-          tasks: state.tasks
-            .map((i) => i)
-            .sort((a, b) => {
-              if (sorted) {
-                if (a.date > b.date) {
-                  return 1;
-                } else {
-                  return -1;
-                }
-              } else {
-                if (a.date < b.date) {
-                  return 1;
-                } else return -1;
-              }
-            }),
-        };
-      });
-    }
-  };
-
-  onSearchByText = (searchText) => {
-    if (searchText) {
-      this.setState({
-        searchActivated: true,
-      });
-    } else {
-      this.setState({
-        searchActivated: false,
-      });
-    }
-
-    let tmpTasks = [...this.state.tasks];
-
-    this.setState({
-      searchedTasks: tmpTasks.filter((i) => i.name.includes(searchText)),
-    });
-  };
-
-  onSearchByDate = (searchDate) => {
-    if (searchDate) {
-      this.setState({
-        searchActivated: true,
-      });
-    } else {
-      this.setState({
-        searchActivated: false,
-      });
-    }
-
-    let tmpTasks = [...this.state.tasks];
-
-    this.setState({
-      searchedTasks: tmpTasks.filter((i) => i.date.includes(searchDate)),
-    });
-  };
-
-  changeFilterInactive = () => {
-    this.setState({
-      searchActivated: false,
-    });
-  };
-
   render() {
     let { tasks, searchedTasks, searchActivated } = this.state;
 
@@ -194,15 +64,8 @@ export class App extends Component {
       <div className={s['app-wrapper']}>
         <HeaderContainer />
         <AddTaskFieldContainer />
-        <SearchField
-          onSearchByText={this.onSearchByText}
-          onSearchByDate={this.onSearchByDate}
-          changeFilterInactive={this.changeFilterInactive}
-        />
-        <SortField
-          onSortByName={this.onSortByName}
-          onSortByDate={this.onSortByDate}
-        />
+        <SearchFieldContainer />
+        <SortFieldContainer />
         <TasksContainer
           tasks={tasks}
           searchedTasks={searchedTasks}

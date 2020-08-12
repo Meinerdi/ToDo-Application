@@ -1,41 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 import s from './SortField.module.scss';
 
-export class SortField extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      sortedByName: false,
-      sortedByDate: false,
-    };
-  }
-
-  handleSortByName = () => {
+export const SortField = ({ onSortByName, onSortByDate }) => {
+  const handleSortByName = () => {
     this.setState((state) => ({
       sortedByName: !state.sortedByName,
     }));
-    this.props.onSortByName(this.state.sortedByName);
+    onSortByName(this.state.sortedByName);
   };
 
-  onSortByDate = () => {
+  const handleSortByDate = () => {
     this.setState((state) => ({
       sortedByDate: !state.sortedByDate,
     }));
-    this.props.onSortByDate(this.state.sortedByDate);
+    onSortByDate(this.state.sortedByDate);
   };
 
-  render() {
-    return (
-      <div className={s['sort-field']}>
-        <span>Sort by:</span>
-        <span onClick={this.handleSortByName} className={s['sort-buttons']}>
-          Name
-        </span>
-        <span onClick={this.onSortByDate} className={s['sort-buttons']}>
-          Date
-        </span>
-      </div>
-    );
-  }
-}
+  return (
+    <div className={s['sort-field']}>
+      <span>Sort by:</span>
+      <span onClick={handleSortByName} className={s['sort-buttons']}>
+        Name
+      </span>
+      <span onClick={handleSortByDate} className={s['sort-buttons']}>
+        Date
+      </span>
+    </div>
+  );
+};

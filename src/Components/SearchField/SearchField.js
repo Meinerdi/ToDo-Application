@@ -1,73 +1,59 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import s from './SearchField.module.scss';
 
-export class SearchField extends Component {
-  constructor(props) {
-    super(props);
+export const SearchField = ({
+  onSearchByText,
+  onSearchByDate,
+  changeFilterInactive,
+}) => {
+  const [valueOfSearchTextField, setValueOfSearchTextField] = useState('');
+  const [valueOfSearchDateField, setvalueOfSearchDateField] = useState('');
 
-    this.state = {
-      valueOfSearchTextField: '',
-      valueOfSearchDateField: '',
-    };
-  }
+  useEffect(() => {
+    setValueOfSearchTextField(localStorage.getItem('valueOfSearchText'));
+    setvalueOfSearchDateField(localStorage.getItem('valueOfSearchDate'));
+  }, []);
 
-  componentDidMount() {
-    this.setState({
-      valueOfSearchTextField: localStorage.getItem('valueOfSearchText'),
-      valueOfSearchDateField: localStorage.getItem('valueOfSearchDate'),
-    });
-  }
-
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
   };
 
-  handleSearchText = (e) => {
-    this.setState({
-      valueOfSearchTextField: e.target.value,
-    });
-
-    this.props.onSearchByText(e.target.value);
+  const handleSearchText = (e) => {
+    setValueOfSearchTextField(e.target.value);
+    onSearchByText(e.target.value);
     localStorage.setItem('valueOfSearchText', e.target.value);
   };
 
-  handleSearchDate = (e) => {
-    this.setState({
-      valueOfSearchDateField: e.target.value,
-    });
-
-    this.props.onSearchByDate(e.target.value);
+  const handleSearchDate = (e) => {
+    setvalueOfSearchDateField(e.target.value);
+    onSearchByDate(e.target.value);
     localStorage.setItem('valueOfSearchDate', e.target.value);
   };
 
-  handleReset = () => {
-    this.setState({
-      valueOfSearchTextField: '',
-      valueOfSearchDateField: '',
-    });
+  const handleReset = () => {
+    setValueOfSearchTextField('');
+    setvalueOfSearchDateField('');
     localStorage.setItem('valueOfSearchText', '');
     localStorage.setItem('valueOfSearchDate', '');
-    this.props.changeFilterInactive();
+    changeFilterInactive();
   };
 
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit} className={s['search-form']}>
-        <input
-          type="search"
-          onChange={this.handleSearchText}
-          placeholder="&#128270; Search here..."
-          value={this.state.valueOfSearchTextField}
-        />
+  return (
+    <form onSubmit={handleSubmit} className={s['search-form']}>
+      <input
+        type="search"
+        onChange={handleSearchText}
+        placeholder="&#128270; Search here..."
+        value={valueOfSearchTextField}
+      />
 
-        <input
-          type="date"
-          onChange={this.handleSearchDate}
-          value={this.state.valueOfSearchDateField}
-        />
+      <input
+        type="date"
+        onChange={handleSearchDate}
+        value={valueOfSearchDateField}
+      />
 
-        <input type="submit" value="RESET FILTERS" onClick={this.handleReset} />
-      </form>
-    );
-  }
-}
+      <input type="submit" value="RESET FILTERS" onClick={handleReset} />
+    </form>
+  );
+};
