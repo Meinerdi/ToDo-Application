@@ -18,16 +18,16 @@ const TasksContainer = (props) => {
 
   const onDeleteTask = (id) => {
     if (searchActivated) {
-      setSearchedTasksCreator(...searchedTasks.filter((i) => i.id !== id));
-      deleteMainTaskCreator(...tasks.filter((i) => i.id !== id));
+      setSearchedTasksCreator(searchedTasks.filter((i) => i.id !== id));
+      deleteMainTaskCreator(tasks.filter((i) => i.id !== id));
     } else {
-      deleteMainTaskCreator(...tasks.filter((i) => i.id !== id));
+      deleteMainTaskCreator(tasks.filter((i) => i.id !== id));
     }
   };
 
   const onCompleteTask = (id) => {
     completeTaskCreator(
-      ...tasks.map((i) => {
+      tasks.map((i) => {
         if (i.id === id) {
           i.done = !i.done;
           return i;

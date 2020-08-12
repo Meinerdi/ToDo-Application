@@ -36,6 +36,10 @@
   background: #3dbb70bb;
 }
 
+.completed .task-name {
+  text-decoration: line-through;
+}
+
 .empty-image {
   width: 250px;
   height: 130px;

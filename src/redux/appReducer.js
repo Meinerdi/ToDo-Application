@@ -100,10 +100,12 @@ export const appReducer = (state = initialState, action) => {
 };
 
 export const addTaskCreator = (payload) => ({ type: ADD_TASK, payload });
+
 export const toggleEmptyFieldsCreator = (payload) => ({
   type: TOGGLE_EMPTY_FIELDS,
   payload,
 });
+
 export const toggleSearchActivatedCreator = (payload) => ({
   type: TOGGLE_SEARCH_ACTIVATED,
   payload,

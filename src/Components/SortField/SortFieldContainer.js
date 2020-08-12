@@ -26,7 +26,7 @@ const SortFieldContainer = (props) => {
 
     if (searchActivated) {
       setSearchedTasksCreator(
-        ...searchedTasks
+        searchedTasks
           .map((i) => i)
           .sort((a, b) => {
             if (sortedByName) {
@@ -44,7 +44,7 @@ const SortFieldContainer = (props) => {
       );
     } else {
       sortMainTasksCreator(
-        ...tasks
+        tasks
           .map((i) => i)
           .sort((a, b) => {
             if (sortedByName) {
@@ -68,7 +68,7 @@ const SortFieldContainer = (props) => {
 
     if (searchActivated) {
       setSearchedTasksCreator(
-        ...searchedTasks
+        searchedTasks
           .map((i) => i)
           .sort((a, b) => {
             if (sortedByDate) {
@@ -86,7 +86,7 @@ const SortFieldContainer = (props) => {
       );
     } else {
       sortMainTasksCreator(
-        ...tasks
+        tasks
           .map((i) => i)
           .sort((a, b) => {
             if (sortedByDate) {
