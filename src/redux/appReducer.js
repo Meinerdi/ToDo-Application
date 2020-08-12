@@ -17,6 +17,9 @@ const SET_SEARCHED_TASKS = 'SET_SEARCHED_TASKS';
 const TOGGLE_SORT_BY_NAME = 'TOGGLE_SORT_BY_NAME';
 const TOGGLE_SORT_BY_DATE = 'TOGGLE_SORT_BY_DATE';
 const SORT_MAIN_TASKS = 'SORT_MAIN_TASKS';
+const DELETE_MAIN_TASK = 'DELETE_MAIN_TASK';
+const COMPLETE_TASK = 'COMPLETE_TASK';
+const SET_ALL_DATA = 'SET_ALL_DATA';
 
 export const appReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -69,6 +72,27 @@ export const appReducer = (state = initialState, action) => {
       };
     }
 
+    case DELETE_MAIN_TASK: {
+      return {
+        ...state,
+        tasks: action.payload,
+      };
+    }
+
+    case COMPLETE_TASK: {
+      return {
+        ...state,
+        tasks: action.payload,
+      };
+    }
+
+    case SET_ALL_DATA: {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    }
+
     default: {
       return state;
     }
@@ -102,5 +126,20 @@ export const toggleSortByDateCreator = (payload) => ({
 
 export const sortMainTasksCreator = (payload) => ({
   type: SORT_MAIN_TASKS,
+  payload,
+});
+
+export const deleteMainTaskCreator = (payload) => ({
+  type: DELETE_MAIN_TASK,
+  payload,
+});
+
+export const completeTaskCreator = (payload) => ({
+  type: COMPLETE_TASK,
+  payload,
+});
+
+export const setAllDataCreator = (payload) => ({
+  type: SET_ALL_DATA,
   payload,
 });
