@@ -1,80 +1,54 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import s from './AddTaskField.module.scss';
 
-export class AddTaskField extends Component {
-  constructor(props) {
-    super(props);
+export const AddTaskField = ({ emptyFields, onAddTask }) => {
+  const [valueOfTaskNameField, setValueOfTaskNameField] = useState('');
+  const [valueOfDateField, setValueOfDateField] = useState('');
 
-    this.state = {
-      valueOfTaskNameField: '',
-      valueOfDateField: '',
-    };
-  }
+  useEffect(() => {
+    setValueOfTaskNameField(localStorage.getItem('valueOfAddTaskName'));
+    setValueOfDateField(localStorage.getItem('valueOfAddTaskDate'));
+  }, []);
 
-  componentDidMount() {
-    this.setState({
-      valueOfTaskNameField: localStorage.getItem('valueOfAddTaskName'),
-      valueOfDateField: localStorage.getItem('valueOfAddTaskDate'),
-    });
-  }
-
-  handleTaskNameChange = (e) => {
-    this.setState({
-      valueOfTaskNameField: e.target.value,
-    });
+  const handleTaskNameChange = (e) => {
+    setValueOfTaskNameField(e.target.value);
     localStorage.setItem('valueOfAddTaskName', e.target.value);
   };
 
-  handleDateChange = (e) => {
-    this.setState({
-      valueOfDateField: e.target.value,
-    });
+  const handleDateChange = (e) => {
+    setValueOfDateField(e.target.value);
     localStorage.setItem('valueOfAddTaskDate', e.target.value);
   };
 
-  handleSubmitTask = (e) => {
+  const handleSubmitTask = (e) => {
     e.preventDefault();
-    this.props.onAddTask(
-      this.state.valueOfTaskNameField,
-      this.state.valueOfDateField
-    );
+    onAddTask(valueOfTaskNameField, valueOfDateField);
 
-    if (this.state.valueOfTaskNameField && this.state.valueOfDateField) {
-      this.setState({
-        valueOfTaskNameField: '',
-        valueOfDateField: '',
-      });
+    if (valueOfTaskNameField && valueOfDateField) {
+      setValueOfTaskNameField('');
+      setValueOfDateField('');
 
       localStorage.setItem('valueOfAddTaskName', '');
       localStorage.setItem('valueOfAddTaskDate', '');
     }
   };
 
-  render() {
-    let { valueOfTaskNameField, valueOfDateField } = this.state;
-    let { emptyFields } = this.props;
-
-    return (
-      <form className={s['add-task-form']}>
-        <input
-          type="search"
-          value={valueOfTaskNameField}
-          onChange={this.handleTaskNameChange}
-          className={emptyFields.taskName ? s.error : ''}
-          placeholder="&#9989; Write task name..."
-        />
-        <input
-          type="date"
-          value={valueOfDateField}
-          onChange={this.handleDateChange}
-          className={emptyFields.taskDate ? s.error : ''}
-        />
-        <input
-          type="submit"
-          value={'ADD TASK'}
-          onClick={this.handleSubmitTask}
-        />
-      </form>
-    );
-  }
-}
+  return (
+    <form className={s['add-task-form']}>
+      <input
+        type="search"
+        value={valueOfTaskNameField}
+        onChange={handleTaskNameChange}
+        className={emptyFields.taskName ? s.error : ''}
+        placeholder="&#9989; Write task name..."
+      />
+      <input
+        type="date"
+        value={valueOfDateField}
+        onChange={handleDateChange}
+        className={emptyFields.taskDate ? s.error : ''}
+      />
+      <input type="submit" value={'ADD TASK'} onClick={handleSubmitTask} />
+    </form>
+  );
+};

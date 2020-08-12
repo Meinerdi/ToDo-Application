@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { AddTaskField } from './Components/AddTaskField/AddTaskField';
-import { Header } from './Components/Header/Header';
+import AddTaskFieldContainer from './Components/AddTaskField/AddTaskFieldContainer';
+import HeaderContainer from './Components/Header/HeaderContainer';
 import { SearchField } from './Components/SearchField/SearchField';
 import { SortField } from './Components/SortField/SortField';
 import { TasksContainer } from './Components/TasksContainer/TasksContainer';
@@ -29,37 +29,6 @@ export class App extends Component {
   componentDidUpdate() {
     localStorage.setItem('state', JSON.stringify({ ...this.state }));
   }
-
-  generateUniqueId = () => {
-    return '_' + Math.random().toString(36).substr(2, 9);
-  };
-
-  onAddTask = (taskName, taskDate) => {
-    if (!taskName || !taskDate) {
-      this.setState({
-        emptyFields: {
-          taskName: !taskName,
-          taskDate: !taskDate,
-        },
-      });
-      return;
-    }
-
-    let templateOfTask = {
-      id: this.generateUniqueId(),
-      name: taskName,
-      done: false,
-      date: taskDate,
-    };
-
-    this.setState((state) => ({
-      tasks: [...state.tasks, templateOfTask],
-      emptyFields: {
-        taskName: !taskName,
-        taskDate: !taskDate,
-      },
-    }));
-  };
 
   onDeleteTask = (id) => {
     if (this.state.searchActivated) {
@@ -219,12 +188,12 @@ export class App extends Component {
   };
 
   render() {
-    let { tasks, emptyFields, searchedTasks, searchActivated } = this.state;
+    let { tasks, searchedTasks, searchActivated } = this.state;
 
     return (
       <div className={s['app-wrapper']}>
-        <Header tasksCount={tasks.length} />
-        <AddTaskField onAddTask={this.onAddTask} emptyFields={emptyFields} />
+        <HeaderContainer />
+        <AddTaskFieldContainer />
         <SearchField
           onSearchByText={this.onSearchByText}
           onSearchByDate={this.onSearchByDate}
