@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import AddTaskFieldContainer from './Components/AddTaskField/AddTaskFieldContainer';
 import HeaderContainer from './Components/Header/HeaderContainer';
 import SearchFieldContainer from './Components/SearchField/SearchFieldContainer';
 import SortFieldContainer from './Components/SortField/SortFieldContainer';
 import TasksContainer from './Components/Tasks/TasksContainer';
-import { setAllDataCreator } from './redux/appReducer';
-import { connect } from 'react-redux';
 import s from './global.module.scss';
+import { setAllDataCreator } from './redux/appReducer';
 
 class App extends Component {
   componentDidMount() {
