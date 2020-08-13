@@ -17,6 +17,8 @@ const TasksContainer = (props) => {
     setSearchedTasksCreator,
   } = props;
 
+  console.log(searchedTasks);
+
   const onDeleteTask = (id) => {
     if (searchActivated) {
       setSearchedTasksCreator(searchedTasks.filter((i) => i.id !== id));
