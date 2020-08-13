@@ -5,9 +5,6 @@ export const SearchField = ({ onSearch, changeFilterInactive }) => {
   const [valueOfSearchTextField, setValueOfSearchTextField] = useState('');
   const [valueOfSearchDateField, setvalueOfSearchDateField] = useState('');
 
-  console.log(`Поиск по тексту - ${valueOfSearchTextField}`);
-  console.log(`Поиск по дате - ${valueOfSearchDateField}`);
-
   useEffect(() => {
     setValueOfSearchTextField(localStorage.getItem('valueOfSearchText'));
     setvalueOfSearchDateField(localStorage.getItem('valueOfSearchDate'));
