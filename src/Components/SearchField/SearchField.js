@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import s from './SearchField.module.scss';
 
-export const SearchField = ({
-  onSearchByText,
-  onSearchByDate,
-  changeFilterInactive,
-}) => {
+export const SearchField = ({ onSearch, changeFilterInactive }) => {
   const [valueOfSearchTextField, setValueOfSearchTextField] = useState('');
   const [valueOfSearchDateField, setvalueOfSearchDateField] = useState('');
 
@@ -23,13 +19,13 @@ export const SearchField = ({
 
   const handleSearchText = (e) => {
     setValueOfSearchTextField(e.target.value);
-    onSearchByText(e.target.value);
+    onSearch(e.target.value, valueOfSearchDateField);
     localStorage.setItem('valueOfSearchText', e.target.value);
   };
 
   const handleSearchDate = (e) => {
     setvalueOfSearchDateField(e.target.value);
-    onSearchByDate(e.target.value);
+    onSearch(valueOfSearchTextField, e.target.value);
     localStorage.setItem('valueOfSearchDate', e.target.value);
   };
 

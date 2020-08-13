@@ -13,23 +13,21 @@ const SearchFieldContainer = (props) => {
     setSearchedTasksCreator,
   } = props;
 
-  const onSearchByText = (searchText) => {
-    searchText
+  const onSearch = (searchText, searchDate) => {
+    searchText || searchDate
       ? toggleSearchActivatedCreator(true)
       : toggleSearchActivatedCreator(false);
-    let tmpTasks = [...tasks];
-    setSearchedTasksCreator(
-      tmpTasks.filter((i) => i.name.includes(searchText))
-    );
-  };
 
-  const onSearchByDate = (searchDate) => {
-    searchDate
-      ? toggleSearchActivatedCreator(true)
-      : toggleSearchActivatedCreator(false);
     let tmpTasks = [...tasks];
+
     setSearchedTasksCreator(
-      tmpTasks.filter((i) => i.date.includes(searchDate))
+      tmpTasks.filter((i) =>
+        searchText && searchDate
+          ? i.name.includes(searchText) && i.date.includes(searchDate)
+          : searchText
+          ? i.name.includes(searchText)
+          : i.date.includes(searchDate)
+      )
     );
   };
 
@@ -40,8 +38,7 @@ const SearchFieldContainer = (props) => {
   return (
     <SearchField
       {...props}
-      onSearchByText={onSearchByText}
-      onSearchByDate={onSearchByDate}
+      onSearch={onSearch}
       changeFilterInactive={changeFilterInactive}
     />
   );
