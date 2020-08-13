@@ -8,3 +8,17 @@
   border: 1px solid #f50808cc;
   background: #d6220a49;
 }
+
+@media only screen and (max-width: 768px) {
+  .add-task-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .add-task-form input[type='search'],
+  .add-task-form input[type='date'] {
+    width: 50%;
+    padding: 6px 3px;
+  }
+}
